@@ -1,0 +1,82 @@
+#!/usr/bin/env node
+import fs from 'fs';
+import { convertResumeToJSON } from 'linkedin-resume-parser';
+import shell from 'shelljs';
+import yargs from 'yargs/yargs';
+import templates from './templates.json';
+
+const argv = yargs(process.argv.slice(2))
+  .options({
+    input: {
+      type: 'string',
+      demandOption: true,
+      alias: 'i',
+      description: 'Global path to exported linkedin html file',
+    },
+    output: {
+      type: 'string',
+      demandOption: true,
+      alias: 'o',
+      description: 'Directory where build files will be created',
+    },
+    template: {
+      type: 'string',
+      demandOption: true,
+      alias: 't',
+      description: 'Template name to be used',
+    },
+    config: {
+      type: 'string',
+      demandOption: false,
+      alias: 'c',
+      description: 'Extra configuration json file',
+    },
+    debug: {
+      type: 'boolean',
+      alias: 'd',
+      default: false,
+      description: 'Show debug logs',
+    },
+  })
+  .parseSync();
+
+shell.config.silent = !argv.debug;
+
+export async function run(): Promise<void> {
+  const templateUrl = (templates as { [name: string]: string })[argv.template];
+  if (!templateUrl) {
+    throw new Error(`Template ${argv.template} not found. Available templates: ${Object.keys(templates).join(', ')}`);
+  }
+
+  const templatePath = `/tmp/linkedin-resume-templates/${argv.template}`;
+
+  // clone selected template
+  console.info(`Setting up template: ${argv.template}`);
+  if (fs.existsSync(templatePath)) {
+    console.info(`Using cached template from: ${templatePath}`);
+  } else {
+    shell.exec(`git clone ${templateUrl} ${templatePath}`);
+    shell.cd(templatePath);
+  }
+
+  // install template dependencies
+  shell.exec(`yarn install`); // TODO: install only prod dependencies
+
+  // parse html input file into a json and save json inside template source
+  console.info(`Parsing HTML resume`);
+  await convertResumeToJSON(argv.input, `${templatePath}/src/parsed-resume.json`);
+
+  // build template
+  console.info(`Generating your new amazing resume`);
+  shell.exec(`yarn build`);
+
+  // clean output directory
+  shell.exec(`rm -rf ${argv.output}`);
+
+  // move template build to output directory
+  shell.exec(`mv ${templatePath}/build ${argv.output}`);
+  console.info(`All done!`);
+  console.info(`Files saved at: ${argv.output}`);
+}
+
+run();
