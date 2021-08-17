@@ -73,7 +73,7 @@ export async function run(): Promise<void> {
 
   // build template
   console.info(`Generating your new amazing resume`);
-  shell.exec(`npm build`);
+  shell.exec(`npm run build`);
 
   // clean output directory
   fs.rmSync(outputPath, { recursive: true, force: true });
