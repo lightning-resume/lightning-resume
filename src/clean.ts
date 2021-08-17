@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import shell from 'shelljs';
 import path from 'path';
+import shell from 'shelljs';
 
 const templatesPath = path.resolve('/tmp/linkedin-resume-templates');
 

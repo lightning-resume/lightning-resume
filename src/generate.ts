@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import fs from 'fs';
 import { convertResumeToJSON } from 'linkedin-resume-parser';
+import path from 'path';
 import shell from 'shelljs';
 import yargs from 'yargs/yargs';
 import templates from './templates.json';
-import path from 'path';
 
 const argv = yargs(process.argv.slice(2))
   .options({
