@@ -33,7 +33,13 @@
     "test:e2e": "cross-env mocha 'test/e2e/**/*.spec.ts'",
     "lint:check": "cross-env prettier --check './**'",
     "lint:fix": "sort-package-json && cross-env prettier --write './**'",
-    "release": "standard-version"
+    "release": "standard-version",
+    "commit": "cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.10",
@@ -49,7 +55,9 @@
     "@types/shelljs": "0.8.9",
     "@types/yargs": "17.0.2",
     "chai": "4.3.4",
+    "commitizen": "^4.2.4",
     "cross-env": "7.0.3",
+    "cz-conventional-changelog": "3.3.0",
     "husky": "7.0.1",
     "mocha": "9.0.0",
     "pinst": "2.1.6",
