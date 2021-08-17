@@ -41,6 +41,7 @@ const argv = yargs(process.argv.slice(2))
   })
   .parseSync();
 
+shell.config.fatal = true;
 shell.config.silent = !argv.debug;
 
 // convert all paths from relative to absolute and normalize them in order to work in every OS
