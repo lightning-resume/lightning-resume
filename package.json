@@ -18,8 +18,8 @@
     "oxmanroman (https://github.com/oxmanroman)"
   ],
   "bin": {
-    "linkedin-resume-generator": "dist/generate.js",
-    "clean": "dist/clean.js"
+    "clean": "dist/clean.js",
+    "linkedin-resume-generator": "dist/generate.js"
   },
   "files": [
     "dist"
