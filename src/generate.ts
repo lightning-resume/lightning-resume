@@ -66,7 +66,7 @@ export async function run(): Promise<void> {
   shell.cd(templatePath);
 
   // install template dependencies
-  shell.exec(`yarn install --prod`);
+  shell.exec(`yarn install`);
 
   // parse html input file into a json and save json inside template source
   console.info(`Parsing HTML resume`);
