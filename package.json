@@ -42,15 +42,15 @@
     "yargs": "17.1.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "12.1.4",
-    "@commitlint/config-conventional": "12.1.4",
+    "@commitlint/cli": "13.1.0",
+    "@commitlint/config-conventional": "13.1.0",
     "@types/mocha": "9.0.0",
     "@types/node": "15.12.2",
     "@types/shelljs": "0.8.9",
     "@types/yargs": "17.0.2",
     "chai": "4.3.4",
     "cross-env": "7.0.3",
-    "husky": "6.0.0",
+    "husky": "7.0.1",
     "mocha": "9.0.0",
     "pinst": "2.1.6",
     "prettier": "2.3.1",
