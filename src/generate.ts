@@ -74,13 +74,13 @@ export async function run(): Promise<void> {
   // build template
   console.info(`Generating your new amazing resume`);
   shell.exec(`npm run build`);
-
-  // clean output directory
-  fs.rmSync(outputPath, { recursive: true, force: true });
-
+  
   // create output parent directory if it doesn't exist yet
   const outputParentPath = path.join(outputPath, '..');
   if (!fs.existsSync(outputParentPath)) fs.mkdirSync(outputParentPath, { recursive: true });
+
+  // clean output directory
+  fs.rmSync(outputPath, { recursive: true, force: true });
 
   // move template build to output directory
   fs.renameSync(templateBuildPath, outputPath);
