@@ -65,7 +65,7 @@ export async function run(): Promise<void> {
   shell.cd(templatePath);
 
   // install template dependencies
-  shell.exec(`yarn install`);
+  shell.exec(`npm install`);
 
   // parse html input file into a json and save json inside template source
   console.info(`Parsing HTML resume`);
@@ -73,13 +73,14 @@ export async function run(): Promise<void> {
 
   // build template
   console.info(`Generating your new amazing resume`);
-  shell.exec(`yarn build`);
+  shell.exec(`npm build`);
 
   // clean output directory
-  shell.exec(`rm -rf ${outputPath}`);
+  fs.rmSync(outputPath, { recursive: true, force: true });
 
   // move template build to output directory
-  shell.exec(`mv ${templateBuildPath} ${outputPath}`);
+  fs.renameSync(templateBuildPath, outputPath);
+
   console.info(`All done!`);
   console.info(`Files saved at: ${outputPath}`);
 }
