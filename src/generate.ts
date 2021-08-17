@@ -78,9 +78,11 @@ export async function run(): Promise<void> {
   // clean output directory
   fs.rmSync(outputPath, { recursive: true, force: true });
 
-  
+  // create output parent directory if it doesn't exist yet
+  const outputParentPath = path.join(outputPath, '..');
+  if (!fs.existsSync(outputParentPath)) fs.mkdirSync(outputParentPath, { recursive: true });
+
   // move template build to output directory
-  if (!fs.existsSync(outputPath)) fs.mkdirSync(outputPath, { recursive: true });
   fs.renameSync(templateBuildPath, outputPath);
 
   console.info(`All done!`);
