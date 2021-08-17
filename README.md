@@ -9,10 +9,10 @@ Create your resume site in a matter of seconds by using your LinkedIn profile da
 - Many templates to choose from
 - It is completely free!
 
-
 ## How to use
 
 ### Basic usage
+
 1. Save your LinkedIn profile data
 2. Run a simple command:
 
@@ -24,21 +24,20 @@ npx linkedin-resume-generator --input ~/downloads/my-resume.html --output ~/my-o
 4. Host it wherever you want
 
 ### Clean cache
+
 Every time a template it used, it's repository is cached at. If you want to clean that cache, for example, to get a template update, just run:
+
 ```shell
 npx -p linkedin-resume-generator clean
 ```
-
 
 ## How to save your LinkedIn profile data
 
 TODO
 
-
 ## Extra configuration
 
 TODO
-
 
 ## FAQ
 

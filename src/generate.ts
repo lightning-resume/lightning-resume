@@ -74,7 +74,7 @@ export async function run(): Promise<void> {
   // build template
   console.info(`Generating your new amazing resume`);
   shell.exec(`npm run build`);
-  
+
   // create output parent directory if it doesn't exist yet
   const outputParentPath = path.join(outputPath, '..');
   if (!fs.existsSync(outputParentPath)) fs.mkdirSync(outputParentPath, { recursive: true });
