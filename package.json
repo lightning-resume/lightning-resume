@@ -1,15 +1,15 @@
 {
-  "name": "linkedin-resume-generator",
+  "name": "lightning-resume",
   "version": "0.0.2",
   "description": "",
   "keywords": [],
-  "homepage": "https://github.com/resume-site-builder/linkedin-resume-generator",
+  "homepage": "https://github.com/lightning-resume/lightning-resume",
   "bugs": {
-    "url": "https://github.com/resume-site-builder/linkedin-resume-generator/issues"
+    "url": "https://github.com/lightning-resume/lightning-resume/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/resume-site-builder/linkedin-resume-generator.git"
+    "url": "git+https://github.com/lightning-resume/lightning-resume.git"
   },
   "license": "MIT",
   "author": "Jose Checa & Roman Oxman",
@@ -19,7 +19,7 @@
   ],
   "bin": {
     "clean": "dist/clean.js",
-    "linkedin-resume-generator": "dist/generate.js"
+    "lightning-resume": "dist/generate.js"
   },
   "files": [
     "dist"
