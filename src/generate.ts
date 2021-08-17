@@ -48,6 +48,7 @@ shell.config.silent = !argv.debug;
 // convert all paths from relative to absolute and normalize them in order to work in every OS
 const templatePath = path.resolve(`/tmp/linkedin-resume-templates/${argv.template}`);
 const templateResumePath = path.resolve(`${templatePath}/src/parsed-resume.json`);
+const templateBuildPath = path.resolve(`${templatePath}/build`);
 const inputHtmlPath = path.resolve(argv.input);
 const outputPath = path.resolve(argv.output);
 
@@ -78,7 +79,7 @@ export async function run(): Promise<void> {
   shell.exec(`rm -rf ${outputPath}`);
 
   // move template build to output directory
-  shell.exec(`mv ${templatePath}/build ${outputPath}`);
+  shell.exec(`mv ${templateBuildPath} ${outputPath}`);
   console.info(`All done!`);
   console.info(`Files saved at: ${outputPath}`);
 }
