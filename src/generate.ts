@@ -4,6 +4,7 @@ import { convertResumeToJSON } from 'linkedin-resume-parser';
 import shell from 'shelljs';
 import yargs from 'yargs/yargs';
 import templates from './templates.json';
+import path from 'path';
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -42,13 +43,17 @@ const argv = yargs(process.argv.slice(2))
 
 shell.config.silent = !argv.debug;
 
+// convert all paths from relative to absolute and normalize them in order to work in every OS
+const templatePath = path.resolve(`/tmp/linkedin-resume-templates/${argv.template}`);
+const templateResumePath = path.resolve(`${templatePath}/src/parsed-resume.json`);
+const inputHtmlPath = path.resolve(argv.input);
+const outputPath = path.resolve(argv.output);
+
 export async function run(): Promise<void> {
   const templateUrl = (templates as { [name: string]: string })[argv.template];
   if (!templateUrl) {
     throw new Error(`Template ${argv.template} not found. Available templates: ${Object.keys(templates).join(', ')}`);
   }
-
-  const templatePath = `/tmp/linkedin-resume-templates/${argv.template}`;
 
   // clone selected template
   console.info(`Setting up template: ${argv.template}`);
@@ -56,27 +61,27 @@ export async function run(): Promise<void> {
     console.info(`Using cached template from: ${templatePath}`);
   } else {
     shell.exec(`git clone ${templateUrl} ${templatePath}`);
-    shell.cd(templatePath);
   }
+  shell.cd(templatePath);
 
   // install template dependencies
   shell.exec(`yarn install`); // TODO: install only prod dependencies
 
   // parse html input file into a json and save json inside template source
   console.info(`Parsing HTML resume`);
-  await convertResumeToJSON(argv.input, `${templatePath}/src/parsed-resume.json`);
+  await convertResumeToJSON(inputHtmlPath, templateResumePath);
 
   // build template
   console.info(`Generating your new amazing resume`);
   shell.exec(`yarn build`);
 
   // clean output directory
-  shell.exec(`rm -rf ${argv.output}`);
+  shell.exec(`rm -rf ${outputPath}`);
 
   // move template build to output directory
-  shell.exec(`mv ${templatePath}/build ${argv.output}`);
+  shell.exec(`mv ${templatePath}/build ${outputPath}`);
   console.info(`All done!`);
-  console.info(`Files saved at: ${argv.output}`);
+  console.info(`Files saved at: ${outputPath}`);
 }
 
 run();
