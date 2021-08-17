@@ -1,6 +1,6 @@
 # :zap: Resume
 
-[![NPM Package](https://img.shields.io/npm/v/lightning-resume/lightning-resume.svg?style=flat-square)](https://www.npmjs.org/package/lightning-resume/lightning-resume)
+[![NPM Package](https://img.shields.io/npm/v/lightning-resume.svg?style=flat-square)](https://www.npmjs.org/package/lightning-resume)
 
 Create your resume site in a matter of seconds by using your LinkedIn profile data.
 
