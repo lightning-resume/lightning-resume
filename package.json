@@ -19,7 +19,7 @@
   ],
   "bin": {
     "linkedin-resume-generator": "dist/generate.js",
-    "linkedin-resume-generator-clean": "dist/clean.js"
+    "clean": "dist/clean.js"
   },
   "files": [
     "dist"
