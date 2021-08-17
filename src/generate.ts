@@ -78,7 +78,9 @@ export async function run(): Promise<void> {
   // clean output directory
   fs.rmSync(outputPath, { recursive: true, force: true });
 
+  
   // move template build to output directory
+  if (!fs.existsSync(outputPath)) fs.mkdirSync(outputPath, { recursive: true });
   fs.renameSync(templateBuildPath, outputPath);
 
   console.info(`All done!`);
