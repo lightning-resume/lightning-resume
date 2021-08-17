@@ -24,6 +24,7 @@ const argv = yargs(process.argv.slice(2))
       type: 'string',
       demandOption: true,
       alias: 't',
+      choices: Object.keys(templates),
       description: 'Template name to be used',
     },
     config: {
@@ -52,9 +53,6 @@ const outputPath = path.resolve(argv.output);
 
 export async function run(): Promise<void> {
   const templateUrl = (templates as { [name: string]: string })[argv.template];
-  if (!templateUrl) {
-    throw new Error(`Template ${argv.template} not found. Available templates: ${Object.keys(templates).join(', ')}`);
-  }
 
   // clone selected template
   console.info(`Setting up template: ${argv.template}`);
