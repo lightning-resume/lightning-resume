@@ -1,4 +1,6 @@
-# LinkedIn Resume Generator
+# :zap: Resume
+
+[![NPM Package](https://img.shields.io/npm/v/lightning-resume/lightning-resume.svg?style=flat-square)](https://www.npmjs.org/package/lightning-resume/lightning-resume)
 
 Create your resume site in a matter of seconds by using your LinkedIn profile data.
 
@@ -17,7 +19,7 @@ Create your resume site in a matter of seconds by using your LinkedIn profile da
 2. Run a simple command:
 
 ```shell
-npx linkedin-resume-generator --input ~/downloads/my-resume.html --output ~/my-output-dir --template your-template
+npx lightning-resume --input ~/downloads/my-resume.html --output ~/my-output-dir --template your-template
 ```
 
 3. Open the `index.html` on your output directory with your browser and see the result for yourself
@@ -28,7 +30,7 @@ npx linkedin-resume-generator --input ~/downloads/my-resume.html --output ~/my-o
 Every time a template it used, it's repository is cached at. If you want to clean that cache, for example, to get a template update, just run:
 
 ```shell
-npx -p linkedin-resume-generator clean
+npx -p lightning-resume clean
 ```
 
 ## How to save your LinkedIn profile data
@@ -43,4 +45,4 @@ TODO
 
 **There is a weird error that I don't understand**
 
-Try adding the flag `--debug` and see if that helps you understand, if not, please refer to our [Github issues](https://github.com/resume-site-builder/linkedin-resume-generator/issues)
+Try adding the flag `--debug` and see if that helps you understand, if not, please refer to our [Github issues](https://github.com/lightning-resume/lightning-resume/issues)
