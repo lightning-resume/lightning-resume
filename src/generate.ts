@@ -46,7 +46,7 @@ shell.config.fatal = true;
 shell.config.silent = !argv.debug;
 
 // convert all paths from relative to absolute and normalize them in order to work in every OS
-const templatePath = path.resolve(`/tmp/linkedin-resume-templates/${argv.template}`);
+const templatePath = path.resolve(`/tmp/lightning-resume/${argv.template}`);
 const templateResumePath = path.resolve(`${templatePath}/src/parsed-resume.json`);
 const templateBuildPath = path.resolve(`${templatePath}/build`);
 const inputHtmlPath = path.resolve(argv.input);

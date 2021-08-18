@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import fs from 'fs';
+import fs from 'fs-extra';
 import path from 'path';
 
-const templatesPath = path.resolve('/tmp/linkedin-resume-templates');
-fs.rmSync(templatesPath, { recursive: true, force: true });
+const templatesPath = path.resolve('/tmp/lightning-resume');
+fs.removeSync(templatesPath);
 console.info(`Cleaned templates directory: ${templatesPath}`);
