@@ -5,6 +5,7 @@ import path from 'path';
 import shell from 'shelljs';
 import yargs from 'yargs/yargs';
 import templates from './templates.json';
+import { downloadRepository } from './utils';
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -55,17 +56,18 @@ const outputPath = path.resolve(argv.output);
 export async function run(): Promise<void> {
   const templateUrl = (templates as { [name: string]: string })[argv.template];
 
-  // clone selected template
+  // download selected template
   if (fs.pathExistsSync(templatePath)) {
     console.info(`Using cached template from: ${templatePath}`);
   } else {
     console.info(`Downloading template: ${argv.template}`);
-    shell.exec(`git clone ${templateUrl} ${templatePath}`);
+    await downloadRepository(templateUrl, templatePath);
+    console.info(`Template cached at: ${templatePath}`);
   }
   shell.cd(templatePath);
 
   // install template dependencies
-  console.info(`Installing template dependencies`);
+  console.info(`Installing template dependencies, go grab some coffee`);
   shell.exec(`npm install`);
 
   // parse html input file into a json and save json inside template source
