@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-import fs from 'fs';
+import fs from 'fs-extra';
 import { convertResumeToJSON } from 'linkedin-resume-parser';
 import path from 'path';
 import shell from 'shelljs';
 import yargs from 'yargs/yargs';
 import templates from './templates.json';
+import { downloadRepository } from './utils';
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -46,7 +47,7 @@ shell.config.fatal = true;
 shell.config.silent = !argv.debug;
 
 // convert all paths from relative to absolute and normalize them in order to work in every OS
-const templatePath = path.resolve(`/tmp/linkedin-resume-templates/${argv.template}`);
+const templatePath = path.resolve(`/tmp/lightning-resume/${argv.template}`);
 const templateResumePath = path.resolve(`${templatePath}/src/parsed-resume.json`);
 const templateBuildPath = path.resolve(`${templatePath}/build`);
 const inputHtmlPath = path.resolve(argv.input);
@@ -55,16 +56,18 @@ const outputPath = path.resolve(argv.output);
 export async function run(): Promise<void> {
   const templateUrl = (templates as { [name: string]: string })[argv.template];
 
-  // clone selected template
-  console.info(`Setting up template: ${argv.template}`);
-  if (fs.existsSync(templatePath)) {
+  // download selected template
+  if (fs.pathExistsSync(templatePath)) {
     console.info(`Using cached template from: ${templatePath}`);
   } else {
-    shell.exec(`git clone ${templateUrl} ${templatePath}`);
+    console.info(`Downloading template: ${argv.template}`);
+    await downloadRepository(templateUrl, templatePath);
+    console.info(`Template cached at: ${templatePath}`);
   }
   shell.cd(templatePath);
 
   // install template dependencies
+  console.info(`Installing template dependencies, go grab some coffee`);
   shell.exec(`npm install`);
 
   // parse html input file into a json and save json inside template source
@@ -75,15 +78,11 @@ export async function run(): Promise<void> {
   console.info(`Generating your new amazing resume`);
   shell.exec(`npm run build`);
 
-  // create output parent directory if it doesn't exist yet
-  const outputParentPath = path.join(outputPath, '..');
-  if (!fs.existsSync(outputParentPath)) fs.mkdirSync(outputParentPath, { recursive: true });
-
   // clean output directory
-  fs.rmSync(outputPath, { recursive: true, force: true });
+  fs.removeSync(outputPath);
 
   // move template build to output directory
-  fs.renameSync(templateBuildPath, outputPath);
+  fs.moveSync(templateBuildPath, outputPath);
 
   console.info(`All done!`);
   console.info(`Files saved at: ${outputPath}`);
