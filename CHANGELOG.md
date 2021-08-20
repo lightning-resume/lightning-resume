@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/lightning-resume/lightning-resume/compare/v0.0.5...v0.0.7) (2021-08-20)
+
+
+### Bug Fixes
+
+* **#11:** add support for older node versions ([#12](https://github.com/lightning-resume/lightning-resume/issues/12)) ([7f13c32](https://github.com/lightning-resume/lightning-resume/commit/7f13c32430f40f837422915050ee4fa38836831a)), closes [#11](https://github.com/lightning-resume/lightning-resume/issues/11) [#11](https://github.com/lightning-resume/lightning-resume/issues/11) [#13](https://github.com/lightning-resume/lightning-resume/issues/13) [#14](https://github.com/lightning-resume/lightning-resume/issues/14)
+
 ### [0.0.6](https://github.com/lightning-resume/lightning-resume/compare/v0.0.5...v0.0.6) (2021-08-20)
 
 
