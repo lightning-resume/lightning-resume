@@ -25,12 +25,12 @@ npx lightning-resume --input ~/downloads/my-resume.html --output ~/my-output-dir
 3. Open the `index.html` on your output directory with your browser and see the result for yourself
 4. Host it wherever you want
 
-### Clean cache
+### Wipe cache
 
-Every time a template it used, it's repository is cached at. If you want to clean that cache, for example, to get a template update, just run:
+Every time a template it used, it's repository is cached at. If you want to wipe that cache, for example, to get a template update, just run:
 
 ```shell
-npx -p lightning-resume clean
+npx -p lightning-resume wipe
 ```
 
 ## How to save your LinkedIn profile data
