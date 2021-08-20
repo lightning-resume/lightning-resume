@@ -18,6 +18,7 @@
     "oxmanroman (https://github.com/oxmanroman)"
   ],
   "bin": {
+    "remove": "dist/remove.js",
     "lightning-resume": "dist/generate.js"
   },
   "files": [
@@ -25,7 +26,7 @@
   ],
   "scripts": {
     "start": "ts-node src/generate",
-    "clean": "ts-node src/clean",
+    "remove": "ts-node src/remove",
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "cross-env mocha 'test/unit/**/*.spec.ts'",
