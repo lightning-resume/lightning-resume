@@ -18,7 +18,6 @@
     "oxmanroman (https://github.com/oxmanroman)"
   ],
   "bin": {
-    "clean": "dist/clean.js",
     "lightning-resume": "dist/generate.js"
   },
   "files": [
