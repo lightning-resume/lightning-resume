@@ -35,7 +35,15 @@ npx -p lightning-resume wipe
 
 ## How to save your LinkedIn profile data
 
-TODO
+### Go to your linkedin profile and save your resume as the following gif shows
+
+<img src="./save_linkedin_html.gif" width="720" height="452">
+
+### Open your terminar and run the next command with the right paths
+
+```node
+npx lightning-resume --input ~/downloads/my-resume.html --output ~/my-output-dir --template your-template
+```
 
 ## Extra configuration
 
